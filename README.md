@@ -1,9 +1,6 @@
-# Powerflex AWS automation
-This project will deploy APEX Block Storage (aka. PowerFlex) in AWS using Terraform based infrastructure as code and some manual steps that are required post deployment. 
+# Powerflex Azure automation
+This project will deploy APEX Block Storage (aka. PowerFlex) in Azure using Terraform based infrastructure as code and some manual steps that are required post deployment. 
 This was tested using a RHEL 8 Linux server and may require small tweaks to the code depending on which OS you are using to run the Terraform deployment.
-
-# YouTube Video
-https://www.youtube.com/watch?v=glse3bcyPes
 
 ## Step 1: Pre-reqs
 
@@ -16,30 +13,7 @@ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashi
 sudo yum -y install terraform
 ```
 
-### Install AWS CLI
-```
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
-```
 
-### Configure AWS creds
-```
-aws configure
-```
-provide access key ID and secret access key
-enter default region name (e.g. eu-west-1)
-enter default output format (e.g. json)
-
-### Clone the repo
-```
-git clone https://github.com/theocrithary/Terraform-PowerFlex-4.5-on-AWS.git
-```
-
-### Navigate to the working directory
-```
-cd Terraform-PowerFlex-4.5-on-AWS/provision/deployments/vpn-mode
-```
 
 ### Rename the vars.tf.example file to vars.tf
 ```
@@ -69,9 +43,6 @@ terraform apply -auto-approve
 ```
 
 ### Confirm the deployment completed successfully, with no errors
-
-
-
 
 Resource Group: powerflexazure
 Virtual Network: ashci-vnet01
@@ -251,12 +222,6 @@ sudo reboot
 ## Step 4: Prepare to run the PFMP installer
 
 ### Prepare the JSON file for installer setup
-- Retrieve the DNS of the load balancer from the AWS console
-e.g. theocrithary-20240528T001402-01e5e64bde6920f2.elb.eu-west-1.amazonaws.com
-- Retrieve one of the IP's by resolving the DNS name
-```
-dig +short theocrithary-20240528T001402-01e5e64bde6920f2.elb.eu-west-1.amazonaws.com | head -1
-```
 - Prepare the JSON file as per below and replace the "Nodes" hostname and IP with the co-res instances 1-3
 ```
 {
