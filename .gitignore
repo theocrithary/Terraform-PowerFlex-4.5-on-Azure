@@ -1,0 +1,8 @@
+image/azure_secrets
+ssh-keys/*.pem
+ssh-keys/*.pub
+demo.txt
+replication.txt
+flex-cloud-azure-deploy-45x.pdf
+6_co_res_3_disks.csv
+image/*
